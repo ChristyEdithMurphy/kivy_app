@@ -1,0 +1,3 @@
+APP_PATH = None
+USER_ID = None
+EXTERNAL_STORAGE_PATH = None

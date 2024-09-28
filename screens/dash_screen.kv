@@ -1,0 +1,257 @@
+<DashScreen>:
+    name: "dash"
+    size: root.width, root.height
+    md_bg_color: app.theme_cls.surfaceColor
+
+
+
+    MDTopAppBar:
+        type: "small"
+        size_hint_x: 1
+        pos_hint: {"center_x": .5, "top": 1}
+        md_bg_color: app.theme_cls.secondaryContainerColor
+
+        MDTopAppBarLeadingButtonContainer:
+
+            MDActionTopAppBarButton:
+                icon: "refresh"
+                on_release: root.on_enter()
+
+        MDTopAppBarTitle:
+            text: "Склад"
+            pos_hint: {"center_x": .5}
+
+        MDTopAppBarTrailingButtonContainer:
+
+            MDActionTopAppBarButton:
+                icon: "theme-light-dark"
+                on_release: app.switch_theme_style()
+
+
+
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: "15dp"
+        #padding: "0dp", "10dp"
+        adaptive_height: True
+        size_hint: None, None
+        size: root.width * 0.9, root.height * 0.2
+        pos_hint: {"top": .9, "center_x": .5}
+
+
+        MDBoxLayout:
+            orientation: "horizontal"
+            spacing: "15dp"
+            padding: "0dp", "10dp"
+            adaptive_height: True
+            size_hint_x: 1
+
+            MDLabel:
+                id: lbl_total_items_value
+                text: ""
+                size_hint_x: 0.6
+                halign: "left"
+                font_style: "Body"
+                role: "medium"
+
+            MDLabel:
+                id: lbl_total_litrage
+                text: ""
+                size_hint_x: 0.33
+                halign: "right"
+                font_style: "Body"
+                role: "medium"
+
+        MDDivider:
+            size_hint_x: 1
+            pos_hint: {"center_x": .5}
+            divider_width: dp(0.5)
+
+
+        MDBoxLayout:
+            orientation: "horizontal"
+            spacing: "15dp"
+            padding: "0dp", "10dp"
+            adaptive_height: True
+            size_hint_x: 1
+
+            MDLabel:
+                id: lbl_total_beer_value
+                text: ""
+                size_hint_x: 0.6
+                halign: "left"
+                font_style: "Body"
+                role: "medium"
+
+            MDLabel:
+                id: lbl_total_beer_litrage
+                text: ""
+                size_hint_x: 0.33
+                halign: "right"
+                font_style: "Body"
+                role: "medium"
+
+
+        MDBoxLayout:
+            orientation: "horizontal"
+            spacing: "15dp"
+            padding: "0dp", "10dp"
+            adaptive_height: True
+            size_hint_x: 1
+
+            MDLabel:
+                id: lbl_total_SAD_value
+                text: ""
+                size_hint_x: 0.6
+                halign: "left"
+                font_style: "Body"
+                role: "medium"
+
+            MDLabel:
+                id: lbl_total_SAD_litrage
+                text: ""
+                size_hint_x: 0.33
+                halign: "right"
+                font_style: "Body"
+                role: "medium"
+
+
+        MDBoxLayout:
+            orientation: "horizontal"
+            spacing: "15dp"
+            padding: "0dp", "10dp"
+            adaptive_height: True
+            size_hint_x: 1
+
+            MDLabel:
+                id: lbl_total_NAD_value
+                text: ""
+                size_hint_x: 0.6
+                halign: "left"
+                font_style: "Body"
+                role: "medium"
+
+            MDLabel:
+                id: lbl_total_NAD_litrage
+                text: ""
+                size_hint_x: 0.33
+                halign: "right"
+                font_style: "Body"
+                role: "medium"
+
+
+        MDBoxLayout:
+            orientation: "horizontal"
+            spacing: "15dp"
+            padding: "0dp", "10dp"
+            adaptive_height: True
+            size_hint_x: 1
+
+            MDLabel:
+                id: lbl_total_WAATER_value
+                text: ""
+                size_hint_x: 0.6
+                halign: "left"
+                font_style: "Body"
+                role: "medium"
+
+            MDLabel:
+                id: lbl_total_WATER_litrage
+                text: ""
+                size_hint_x: 0.33
+                halign: "right"
+                font_style: "Body"
+                role: "medium"
+
+
+
+    MDDivider:
+        size_hint_x: 0.9
+        pos_hint: {"top": 0.68, "center_x": .5}
+        divider_width: dp(0.5)
+        #color: "#217FA6"
+
+
+
+    BoxLayout:
+        orientation: 'vertical'
+        pos_hint: {"top": 0.67}
+        size_hint: None, None
+        size: root.width, root.height * 0.58
+        #size: 1, root.height * 0.58
+        padding: 0
+        spacing: 0
+        ScrollView:
+            size_hint: None, 0.58 # set size_hint_y
+            width: root.width
+            do_scroll_x: False
+            do_scroll_y: True
+            #bar_color: "#217FA6"
+            bar_width: 1
+            MDList:
+                id: sold_products_list
+                size_hint: None, None  # set size_hint_y to None
+                width: root.width
+                height: self.minimum_height
+                spacing: dp(0)
+                padding: dp(0)
+
+
+    MDExtendedFabButton:
+        pos_hint: {"top": 0.085, "center_x": .1}
+        color_map: "tertiary"
+        elevation_normal: 12
+        theme_shadow_color: "Custom"
+        shadow_color: "#252C35"
+        #on_press: app.goto_receive_items()
+
+        MDExtendedFabButtonIcon:
+            icon: "chat-outline"
+
+
+    MDExtendedFabButton:
+        pos_hint: {"top": 0.085, "center_x": .3}
+        color_map: "tertiary"
+        elevation_normal: 12
+        theme_shadow_color: "Custom"
+        shadow_color: "#252C35"
+        on_press: app.goto_receive_items()
+
+        MDExtendedFabButtonIcon:
+            icon: "cart-arrow-down"
+
+
+    MDExtendedFabButton:
+        pos_hint: {"top": 0.085, "center_x": .5}
+        color_map: "tertiary"
+        elevation_normal: 12
+        theme_shadow_color: "Custom"
+        shadow_color: "#252C35"
+        on_press: app.goto_release_items()
+
+        MDExtendedFabButtonIcon:
+            icon: "cart-arrow-up"
+
+
+    MDExtendedFabButton:
+        pos_hint: {"top": 0.085, "center_x": .7}
+        color_map: "tertiary"
+        elevation_normal: 12
+        theme_shadow_color: "Custom"
+        shadow_color: "#252C35"
+        #on_press: app.goto_start_bot()
+
+        MDExtendedFabButtonIcon:
+            icon: "cart"
+
+
+    MDExtendedFabButton:
+        pos_hint: {"top": 0.085, "center_x": .9}
+        color_map: "tertiary"
+        elevation_normal: 12
+        theme_shadow_color: "Custom"
+        shadow_color: "#252C35"
+        on_press: app.goto_qr_scanner()
+
+        MDExtendedFabButtonIcon:
+            icon: "qrcode-scan"

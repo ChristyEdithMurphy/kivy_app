@@ -1,0 +1,165 @@
+<OutgoingItemsScreen>:
+    name: "outgoing_items_screen"
+    size: root.width, root.height
+    md_bg_color: app.theme_cls.surfaceColor
+
+
+    # HEADER LINE
+    MDTopAppBar:
+        type: "small"
+        size_hint_x: 1
+        pos_hint: {"center_x": .5, "top": 1}
+        md_bg_color: app.theme_cls.secondaryContainerColor
+
+        MDTopAppBarLeadingButtonContainer:
+
+            MDActionTopAppBarButton:
+                icon: "arrow-left"
+                on_press: app.goback_screen_0()
+
+        MDTopAppBarTitle:
+            text: "Отпуск товара"
+            pos_hint: {"center_x": .5}
+
+        MDTopAppBarTrailingButtonContainer:
+
+            MDActionTopAppBarButton:
+                icon: "theme-light-dark"
+                on_release: app.switch_theme_style()
+
+
+    # BODY
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: "23dp"
+        adaptive_height: True
+        size_hint: None, None
+        size: root.width * 0.9, root.height * 0.27
+        pos_hint: {"top": .9, "center_x": .5}
+
+
+        MDTextField:
+            id: outgoing_destination
+            mode: "outlined"
+            size_hint_x: 1
+            font_style: "Body"
+            role: "medium"
+            on_focus: if self.focus: root.open_items_destination_menu()
+
+            MDTextFieldLeadingIcon:
+                icon: "map-marker"
+
+            MDTextFieldHintText:
+                text: "Назначение"
+
+            MDTextFieldMaxLengthText:
+                max_text_length: 100
+
+
+        MDTextField:
+            id: outgoing_item
+            mode: "outlined"
+            size_hint_x: 1
+            role: "medium"
+            on_focus: if self.focus: root.open_items_menu()
+            on_text: root.open_on_text_items_menu()
+            on_text_validate: root.on_enter_check_item()
+
+            MDTextFieldLeadingIcon:
+                icon: "identifier"
+
+            MDTextFieldHintText:
+                text: "Товар"
+
+            MDTextFieldMaxLengthText:
+                max_text_length: 50
+
+
+        MDBoxLayout:
+            orientation: "horizontal"
+            spacing: "10dp"
+            adaptive_height: True
+            size_hint_x: 1
+
+
+            MDTextField:
+                id: outgoing_item_qty
+                mode: "outlined"
+                size_hint_x: 0.35
+                role: "medium"
+                on_text_validate: root.qty_corrector()
+
+                MDTextFieldLeadingIcon:
+                    icon: "bottle-wine-outline"
+
+                MDTextFieldHintText:
+                    text: "Кол-во"
+
+                MDTextFieldMaxLengthText:
+                    max_text_length: 10
+
+
+            MDTextField:
+                id: outgoing_item_comment
+                mode: "outlined"
+                size_hint_x: 0.6
+                role: "medium"
+                on_text_validate: root.on_comment_validate()
+
+                MDTextFieldLeadingIcon:
+                    icon: "comment-text-outline"
+
+                MDTextFieldHintText:
+                    text: "Комментарий"
+
+                MDTextFieldMaxLengthText:
+                    max_text_length: 100
+
+
+
+    BoxLayout:
+        orientation: 'vertical'
+        pos_hint: {"top": 0.59}
+        size_hint: None, None
+        size: 1, root.height * 0.59
+        padding: 0
+        spacing: 0
+        ScrollView:
+            size_hint: None, 0.59  # set size_hint_y
+            width: root.width
+            do_scroll_x: False
+            do_scroll_y: True
+            #bar_color: 0, 0, 1, 1
+            bar_width: 1
+            MDList:
+                id: wh_cart_outgoing_items
+                size_hint: None, None  # set size_hint_y to None
+                width: root.width
+                height: self.minimum_height
+                spacing: dp(0)
+                padding: dp(0)
+
+
+
+    MDExtendedFabButton:
+        pos_hint: {"top": 0.085, "center_x": .1}
+        color_map: "tertiary"
+        elevation_normal: 12
+        theme_shadow_color: "Custom"
+        shadow_color: "#252C35"
+        on_press: root.cancel_outgoing_items()
+
+        MDExtendedFabButtonIcon:
+            icon: "trash-can-outline"
+
+
+    MDExtendedFabButton:
+        pos_hint: {"top": 0.085, "center_x": .9}
+        color_map: "tertiary"
+        elevation_normal: 12
+        theme_shadow_color: "Custom"
+        shadow_color: "#252C35"
+        on_press: root.release_items_from_warehouse_manually()
+
+        MDExtendedFabButtonIcon:
+            icon: "check"

@@ -1,0 +1,42 @@
+ScreenManager:
+    LoginScreen:
+    DashScreen:
+    #SendReportsScreen:
+    IncomeItemsScreen:
+    OutgoingItemsScreen:
+    QRScannerScreen:
+    #QRScannedRequestScreen:
+    #QRComfirmationScreen:
+    ##CreateNewItemsScreen:
+
+
+<LoginScreen>:
+    name: "login"
+    size: root.width, root.height
+    md_bg_color: app.theme_cls.surfaceColor
+
+
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: "15dp"
+        adaptive_height: True
+        size_hint_x: .9
+        pos_hint: {"top": .6, "center_x": .5}
+
+
+        MDTextField:
+            id: agent_key_id
+            mode: "outlined"
+            password: True
+            size_hint_x: 1
+            role: "small"
+            on_text_validate: app.goto_dash_after_login()
+
+            MDTextFieldHintText:
+                text: "Mot de passe"
+
+            MDTextFieldTrailingIcon:
+                icon: "key-variant"
+
+            MDTextFieldMaxLengthText:
+                max_text_length: 10
